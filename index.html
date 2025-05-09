@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$BULLGUY - Pump Fun Coin</title>
+  <link rel="icon" type="image/png" href="assets/bullguy.png" />
+  <style>
+    body {
+      background: #7a8a4a;
+      color: #2d3a1a;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .animated-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      animation: floatXY 10s ease-in-out infinite;
+    }
+    .circle1 {
+      width: 220px; height: 220px;
+      background: #5e6b2a;
+      left: 5vw; top: 10vh;
+      animation-delay: 0s;
+    }
+    .circle2 {
+      width: 140px; height: 140px;
+      background: #8fa35a;
+      right: 8vw; top: 30vh;
+      animation-delay: 2s;
+    }
+    .circle3 {
+      width: 90px; height: 90px;
+      background: #b7c98a;
+      left: 30vw; bottom: 8vh;
+      animation-delay: 4s;
+    }
+    @keyframes floatXY {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(20px, -20px); }
+      40%  { transform: translate(-15px, 25px); }
+      60%  { transform: translate(15px, -10px); }
+      80%  { transform: translate(-20px, 15px); }
+      100% { transform: translate(0, 0); }
+    }
+    .main-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      background: #6b7b3a;
+      border-radius: 24px;
+      box-shadow: 0 4px 24px rgba(60, 70, 30, 0.15);
+      padding: 40px 32px 32px 32px;
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 400px;
+    }
+    .bullguy-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 16px;
+      background: #5e6b2a;
+      margin-bottom: 24px;
+      object-fit: cover;
+      box-shadow: 0 2px 12px rgba(60, 70, 30, 0.10);
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 8px 0;
+      color: #2d3a1a;
+      letter-spacing: 2px;
+    }
+    .slogan {
+      font-size: 1.15rem;
+      color: #3d4a1a;
+      margin-bottom: 18px;
+      font-style: italic;
+      letter-spacing: 1px;
+      text-align: center;
+      opacity: 0.85;
+    }
+    .address {
+      background: #8fa35a;
+      color: #2d3a1a;
+      font-size: 0.95rem;
+      padding: 10px 16px;
+      border-radius: 8px;
+      word-break: break-all;
+      margin-bottom: 24px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+    }
+    .socials {
+      display: flex;
+      gap: 32px;
+      margin-top: 18px;
+    }
+    .social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #2d3a1a;
+      font-size: 0.95rem;
+      opacity: 0.7;
+    }
+    .social img {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 6px;
+      filter: grayscale(1) brightness(0.7);
+    }
+    .coming-soon {
+      font-size: 0.85rem;
+      color: #4d5a2a;
+      font-style: italic;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 18px 6px 18px 6px;
+        max-width: 98vw;
+      }
+      .bullguy-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+    .fadein-section {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeinUp 1.1s ease forwards;
+      animation-delay: 0.3s;
+    }
+    .fadein-section:nth-of-type(2) { animation-delay: 0.5s; }
+    .fadein-section:nth-of-type(3) { animation-delay: 0.7s; }
+    @keyframes fadeinUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .memes-section {
+      position: relative;
+      margin-top: 48px;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px;
+      z-index: 2;
+    }
+    .memes-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.1);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at 60% 40%, #b7c98a 0%, #8fa35a 60%, #6b7b3a 100%);
+      filter: blur(18px) brightness(1.1) saturate(1.2);
+      opacity: 0.7;
+      z-index: 1;
+      border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+      pointer-events: none;
+    }
+    .memes-card {
+      position: relative;
+      z-index: 2;
+      background: #8fa35a;
+      border: 3px dashed #5e6b2a;
+      color: #2d3a1a;
+      border-radius: 22px;
+      box-shadow: 0 6px 32px 0 rgba(60,70,30,0.18), 0 1.5px 8px 0 rgba(60,70,30,0.10);
+      padding: 32px 24px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 260px;
+      min-height: 120px;
+    }
+    .memes-title {
+      font-size: 2rem;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive, 'Segoe UI', Arial, sans-serif;
+      color: #2d3a1a;
+      margin: 0 0 12px 0;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 0 #b7c98a, 0 2px 8px #6b7b3a44;
+      text-align: center;
+      font-weight: bold;
+    }
+    .memes-coming {
+      font-size: 1.25rem;
+      color: #2d3a1a;
+      background: #b7c98a;
+      border-radius: 12px;
+      padding: 10px 22px;
+      box-shadow: 0 1px 6px 0 #8fa35a33;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-weight: 500;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+  <div class="main-content">
+    <div class="container">
+      <img src="assets/bullguy.png" alt="$BULLGUY mascot" class="bullguy-img" />
+      <h1>$BULLGUY</h1>
+      <div class="slogan">Just a $BULLGUY..</div>
+      <div class="address">4g9PPULbkwZmuQkJUunfyreuZouiUxd6HS8Q9En4pump</div>
+      <div class="socials">
+        <div class="social">
+          <img src="assets/x-logo.png" alt="X logo" />
+          <span class="coming-soon">coming soon</span>
+        </div>
+        <div class="social">
+          <a href="https://t.me/bullguycto" target="_blank" rel="noopener noreferrer" aria-label="Join $BULLGUY Telegram" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;">
+            <img src="assets/tg-logo.png" alt="Telegram logo" style="transition:filter 0.2s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1) brightness(0.7)'" />
+            <span class="tg-label" style="color:#2d3a1a;font-size:0.97rem;font-weight:600;opacity:0.9;">Join Telegram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <section class="fadein-section memes-section">
+      <div class="memes-bg"></div>
+      <div class="memes-card">
+        <h2 class="memes-title">🔥 MEMES ZONE 🔥</h2>
+        <div class="memes-coming">🚧 Coming soon 🚧</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html> 
